@@ -11,3 +11,15 @@ def add_task(filename, task): # Add new tasks at bottom in file
     with open(filename, 'a', encoding='utf-8') as tasklist:
         # Add newline at end to ensure next added task is on separate line
         tasklist.write(f'{task}\n')
+
+def delete_task(filename, pos): # Delete task from file
+    newlist = ''
+    with open(filename, 'r', encoding='utf-8') as tasklist:
+        index = 1
+        for task in tasklist:
+            if index != pos:
+                # Add everything except mentioned task to an empty string
+                newlist += task
+            index += 1
+    with open(str(filename), 'w', encoding='utf-8') as tasklist:
+        tasklist.write(newlist) # Overwrite original file with string
